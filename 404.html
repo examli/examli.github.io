@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Examli</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fafafa;
+      color: #111;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 2rem 2.5rem;
+      border-bottom: 1px solid #e5e5e5;
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    header h1 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    header p {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    main {
+      flex: 1;
+      padding: 3rem 2.5rem;
+      max-width: 680px;
+    }
+
+    .label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 1.2rem;
+    }
+
+    .message {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.1rem 1.2rem;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 6px;
+      margin-bottom: 2px;
+    }
+
+    .message-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: #fff4f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .message-text {
+      font-size: 0.97rem;
+      font-weight: 500;
+      color: #111;
+    }
+
+    .message-sub {
+      font-size: 0.82rem;
+      color: #aaa;
+      margin-top: 0.15rem;
+    }
+
+    .back {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 1.2rem;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      text-decoration: none;
+      color: #111;
+      font-size: 0.97rem;
+      font-weight: 500;
+      transition: border-color 0.15s, background 0.15s;
+      border-radius: 6px;
+      margin-top: 2px;
+    }
+
+    .back:hover {
+      border-color: #111;
+      background: #f5f5f5;
+    }
+
+    .back-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .back-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: #f0fdf4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .back-arrow {
+      color: #bbb;
+      font-size: 0.9rem;
+      transition: transform 0.15s, color 0.15s;
+    }
+    .back:hover .back-arrow {
+      transform: translateX(-3px);
+      color: #111;
+    }
+
+    footer {
+      padding: 1.5rem 2.5rem;
+      border-top: 1px solid #e5e5e5;
+      font-size: 0.78rem;
+      color: #bbb;
+    }
+
+    @media (max-width: 480px) {
+      header, main, footer { padding-left: 1.25rem; padding-right: 1.25rem; }
+      main { padding-top: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Examli</h1>
+    <p>Last minute exam prep</p>
+  </header>
+
+  <main>
+    <p class="label">Error 404</p>
+
+    <div class="message">
+      <div class="message-icon">🔍</div>
+      <div>
+        <div class="message-text">Page not found</div>
+        <div class="message-sub">This page doesn't exist or was moved.</div>
+      </div>
+    </div>
+
+    <a href="/" class="back">
+      <div class="back-left">
+        <div class="back-icon">🏠</div>
+        <span>Go back home</span>
+      </div>
+      <span class="back-arrow">←</span>
+    </a>
+  </main>
+
+  <footer>© 2026 Examli</footer>
+
+</body>
+</html>

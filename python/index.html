@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IDLE Shell 3.13.5</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #fff;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-size: 12px;
+  }
+
+  .window {
+    width: 100%;
+    height: 100vh;
+    background: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #aaa;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  }
+
+  /* Title bar - plain gray, no color */
+  .title-bar {
+    height: 22px;
+    background: #e8e8e8;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4px 0 6px;
+    flex-shrink: 0;
+    user-select: none;
+  }
+
+  .title-left {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: #000;
+  }
+
+  .title-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Simple snake icon like IDLE */
+  .title-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .title-buttons {
+    display: flex;
+    gap: 2px;
+  }
+
+  .tbtn {
+    width: 26px;
+    height: 18px;
+    background: #e1e1e1;
+    border: 1px solid #adadad;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #000;
+    border-radius: 2px;
+  }
+
+  .tbtn:hover { background: #d0d0d0; }
+  .tbtn.close:hover { background: #e81123; color: #fff; }
+
+  /* Menu bar */
+  .menu-bar {
+    height: 22px;
+    background: #f0f0f0;
+    border-bottom: 1px solid #d0d0d0;
+    display: flex;
+    align-items: center;
+    padding: 0 2px;
+    flex-shrink: 0;
+    user-select: none;
+  }
+
+  .menu-item {
+    padding: 3px 8px;
+    cursor: default;
+    color: #000;
+    font-size: 12px;
+  }
+
+  .menu-item:hover {
+    background: #d0e4f7;
+    color: #000;
+  }
+
+  /* Main content — white editable area */
+  .content-area {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #d0d0d0;
+    margin: 2px 2px 0 2px;
+    overflow: auto;
+    padding: 4px 6px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    color: #000;
+    line-height: 1.5;
+    outline: none;
+    white-space: pre-wrap;
+    word-break: break-word;
+    cursor: text;
+  }
+
+  /* Status bar */
+  .status-bar {
+    height: 20px;
+    background: #f0f0f0;
+    border-top: 1px solid #d0d0d0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 4px;
+    gap: 1px;
+    flex-shrink: 0;
+  }
+
+  .status-cell {
+    border: 1px solid #bbb;
+    padding: 0 8px;
+    font-size: 11px;
+    min-width: 58px;
+    text-align: center;
+    color: #000;
+    background: #f5f5f5;
+    height: 15px;
+    line-height: 13px;
+  }
+</style>
+</head>
+<body>
+
+<div class="window">
+
+  <!-- Title Bar -->
+  <div class="title-bar">
+    <div class="title-left">
+      <!-- IDLE snake-like icon approximation -->
+      <svg class="title-icon" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="5" width="12" height="4" rx="2" fill="#4a90d9"/>
+        <circle cx="11" cy="4" r="2" fill="#f5a623"/>
+        <circle cx="12" cy="3.5" r="0.8" fill="#000"/>
+      </svg>
+      IDLE Shell 3.13.5
+    </div>
+    <div class="title-buttons">
+      <div class="tbtn">&#x2013;</div>
+      <div class="tbtn">&#x2610;</div>
+      <div class="tbtn close">&#x2715;</div>
+    </div>
+  </div>
+  <!-- Menu Bar -->
+  <div class="menu-bar">
+    <div class="menu-item">File</div>
+    <div class="menu-item">Edit</div>
+    <div class="menu-item">Shell</div>
+    <div class="menu-item">Debug</div>
+    <div class="menu-item">Options</div>
+    <div class="menu-item">Window</div>
+    <div class="menu-item">Help</div>
+  </div>
+
+  <div style="position:sticky; top:0; background:white; padding:10px; border-bottom:1px solid #ccc;">
+<a href="#slip1">1</a> |
+<a href="#slip2">2</a> |
+<a href="#slip3">3</a> |
+<a href="#slip4">4</a> |
+<a href="#slip5">5</a> |
+<a href="#slip6">6</a> |
+<a href="#slip7">7</a> |
+<a href="#slip8">8</a> |
+<a href="#slip9">9</a> |
+<a href="#slip10">10</a> |
+<a href="#slip11">11</a> |
+<a href="#slip12">12</a> |
+<a href="#slip13">13</a> |
+<a href="#slip14">14</a> |
+<a href="#slip15">15</a> |
+<a href="#slip16">16</a> |
+<a href="#slip17">17</a> |
+<a href="#slip18">18</a> |
+<a href="#slip19">19</a> |
+<a href="#slip20">20</a> |
+<a href="#slip21">21</a> |
+<a href="#slip22">22</a> |
+<a href="#slip23">23</a> |
+<a href="#slip24">24</a> |
+<a href="#slip25">25</a> |
+<a href="#slip26">26</a> |
+<a href="#slip27">27</a> |
+<a href="#slip28">28</a> |
+<a href="#slip29">29</a> |
+<a href="#slip30">30</a>
+</div>
+
+  <!-- Plain White Editable Content Area -->
+  <div class="content-area">
+<hr>
+
+<div id="slip1">
+<b>Slip 1</b>
+
+<p><b>Q1)</b> Write a Python Program to Calculate the Area of a Rectangle and Circle.</p>
+
+<pre>
+l = float(input("Enter length: "))
+b = float(input("Enter breadth: "))
+
+rect_area = l * b
+print("Area of Rectangle =", rect_area)
+
+r = float(input("Enter radius: "))
+
+circle_area = 3.14 * r * r
+print("Area of Circle =", circle_area)
+</pre>
+
+<p><b>Q2)</b> Write a Python program to remove duplicate characters and vowels from a string and display the modified string.</p>
+
+<pre>
+s = input("Enter string: ")
+result = ""
+
+for ch in s:
+    if ch.lower() not in "aeiou" and ch not in result:
+        result += ch
+
+print("Modified string:", result)
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Write a Python program to get the maximum and minimum value in a dictionary.</p>
+
+<pre>
+d = {'a':10,'b':5,'c':30,'d':20}
+
+print("Dictionary:", d)
+
+print("Maximum value:", max(d.values()))
+print("Minimum value:", min(d.values()))
+</pre>
+</div>
+
+<hr>
+
+<div id="slip2">
+<b>Slip 2</b>
+
+<p><b>Q1)</b> Write a Python program to replace special symbol in string with # character.</p>
+
+<pre>
+s = input("Enter string: ")
+result = ""
+
+for ch in s:
+    if ch.isalnum():
+        result += ch
+    else:
+        result += "#"
+
+print("Modified string:", result)
+</pre>
+
+<p><b>Q2)</b> Write a Python program to find the repeated items of a tuple and remove repeated items of a tuple and display updated tuple.</p>
+
+<pre>
+t = (1,2,3,2,4,1,5)
+
+new_tuple = tuple(set(t))
+
+print("Original Tuple:", t)
+print("Updated Tuple:", new_tuple)
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Write a Python Program to print the pattern.</p>
+
+<pre>
+for i in range(1,4):
+    for j in range(i):
+        print("*", end=" ")
+    print()
+</pre>
+</div>
+
+<hr>
+
+<div id="slip3">
+<b>Slip 3</b>
+
+<p><b>Q1)</b> Write a Python program to find the length of a tuple.</p>
+
+<pre>
+t = (10,20,30,40,50)
+
+print("Tuple:", t)
+print("Length of tuple:", len(t))
+</pre>
+
+<p><b>Q2)</b> Write a Python program to display multiplication table of a number.</p>
+
+<pre>
+num = int(input("Enter number: "))
+
+for i in range(1,11):
+    print(num, "x", i, "=", num*i)
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Write a Python program to accept a sentence and display total number of words and each word with its starting index.</p>
+
+<pre>
+s = input("Enter sentence: ")
+
+words = s.split()
+
+print("Total words:", len(words))
+
+for w in words:
+    print(w, "starts at index", s.index(w))
+</pre>
+</div>
+
+<hr>
+
+<div id="slip4">
+<b>Slip 4</b>
+
+<p><b>Q1)</b> Write a Python Program to Calculate the Sum and Average of Numbers in a Given List.</p>
+
+<pre>
+lst = [10,20,30,40,50]
+
+total = sum(lst)
+avg = total / len(lst)
+
+print("Sum:", total)
+print("Average:", avg)
+</pre>
+
+<p><b>Q2)</b> Write a Python program to create a dictionary of keys x, y, and z where each key has value list from 11–20, 21–30 and 31–40 respectively. Access the fifth value of each key.</p>
+
+<pre>
+d = {
+'x': list(range(11,21)),
+'y': list(range(21,31)),
+'z': list(range(31,41))
+}
+
+print("5th value of x:", d['x'][4])
+print("5th value of y:", d['y'][4])
+print("5th value of z:", d['z'][4])
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Write a Python program to accept two strings and check whether both strings are equal or not without using ==.</p>
+
+<pre>
+s1 = input("Enter first string: ")
+s2 = input("Enter second string: ")
+
+if len(s1) != len(s2):
+    print("Strings are not equal")
+else:
+    equal = True
+    for i in range(len(s1)):
+        if s1[i] != s2[i]:
+            equal = False
+            break
+
+    if equal:
+        print("Strings are equal")
+    else:
+        print("Strings are not equal")
+</pre>
+</div>
+
+<hr>
+
+<div id="slip5">
+<b>Slip 5</b>
+
+<p><b>Q1)</b> Write a Python program to convert a list to a tuple.</p>
+
+<pre>
+lst = [1, 2, 3, 4, 5]
+
+t = tuple(lst)
+
+print("List:", lst)
+print("Tuple:", t)
+</pre>
+
+<p><b>Q2)</b> Write a Python program to accept three numbers and find Minimum and Maximum of these numbers.</p>
+
+<pre>
+a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+c = int(input("Enter third number: "))
+
+print("Minimum:", min(a, b, c))
+print("Maximum:", max(a, b, c))
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Write a Python function that accepts a string and calculates the number of uppercase letters and lowercase letters.</p>
+
+<pre>
+def count_case(s):
+    upper = 0
+    lower = 0
+
+    for ch in s:
+        if ch.isupper():
+            upper += 1
+        elif ch.islower():
+            lower += 1
+
+    print("Uppercase letters:", upper)
+    print("Lowercase letters:", lower)
+
+text = input("Enter string: ")
+count_case(text)
+</pre>
+</div>
+
+<hr>
+
+<div id="slip6">
+<b>Slip 6</b>
+
+<p><b>Q1)</b> Write a Python program to remove duplicates from a list.</p>
+
+<pre>
+lst = [1,2,2,3,4,4,5]
+
+new_list = list(set(lst))
+
+print("Original List:", lst)
+print("List without duplicates:", new_list)
+</pre>
+
+<p><b>Q2)</b> Write a Python function that accepts a string and calculates the number of uppercase letters and lowercase letters.</p>
+
+<pre>
+def count_case(s):
+    upper = 0
+    lower = 0
+
+    for ch in s:
+        if ch.isupper():
+            upper += 1
+        elif ch.islower():
+            lower += 1
+
+    print("Uppercase:", upper)
+    print("Lowercase:", lower)
+
+text = input("Enter string: ")
+count_case(text)
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Write a Python program to sort a dictionary by value in ascending and descending order.</p>
+
+<pre>
+d = {'a':3,'b':1,'c':2}
+
+asc = dict(sorted(d.items(), key=lambda x: x[1]))
+desc = dict(sorted(d.items(), key=lambda x: x[1], reverse=True))
+
+print("Ascending:", asc)
+print("Descending:", desc)
+</pre>
+</div>
+
+<hr>
+
+<div id="slip7">
+<b>Slip 7</b>
+
+<p><b>Q1)</b> Write a Python program to find maximum and minimum value in a set.</p>
+
+<pre>
+s = {10,5,20,8}
+
+print("Set:", s)
+print("Maximum:", max(s))
+print("Minimum:", min(s))
+</pre>
+
+<p><b>Q2)</b> Write a Python program to mask a string such that first and last characters remain same and all middle characters are replaced by *.</p>
+
+<pre>
+s = input("Enter string: ")
+
+masked = s[0] + "*"*(len(s)-2) + s[-1]
+
+print("Masked string:", masked)
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Write a Python program to accept two numbers and perform Bitwise AND, OR, NOT and XOR operations.</p>
+
+<pre>
+a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+
+print("AND:", a & b)
+print("OR:", a | b)
+print("XOR:", a ^ b)
+print("NOT of first:", ~a)
+</pre>
+</div>
+<hr>
+
+<div id="slip8">
+<b>Slip 8</b>
+
+<p><b>Q1)</b> Write a Python program to merge two Python dictionaries.</p>
+
+<pre>
+d1 = {'a':1,'b':2}
+d2 = {'c':3,'d':4}
+
+d1.update(d2)
+
+print("Merged Dictionary:", d1)
+</pre>
+
+<p><b>Q2)</b> Write a Python program to check whether a string starts with a capital letter, ends with a digit and contains at least one special character.</p>
+
+<pre>
+import string
+
+s = input("Enter string: ")
+
+if s[0].isupper():
+    print("Starts with capital letter")
+else:
+    print("Does not start with capital letter")
+
+if s[-1].isdigit():
+    print("Ends with digit")
+else:
+    print("Does not end with digit")
+
+special = False
+
+for ch in s:
+    if ch in string.punctuation:
+        special = True
+
+if special:
+    print("Contains special character")
+else:
+    print("No special character")
+</pre>
+</div>
+
+<hr>
+
+<div id="slip9">
+<b>Slip 9</b>
+
+<p><b>Q1)</b> Write a Python program to get the largest and smallest number from a list.</p>
+
+<pre>
+lst = [10,5,30,2,50]
+
+print("Largest:", max(lst))
+print("Smallest:", min(lst))
+</pre>
+
+<p><b>Q2)</b> Write a Python function that accepts a string and calculates number of vowels and consonants.</p>
+
+<pre>
+def count_vc(s):
+    vowels = 0
+    consonants = 0
+
+    for ch in s.lower():
+        if ch.isalpha():
+            if ch in "aeiou":
+                vowels += 1
+            else:
+                consonants += 1
+
+    print("Vowels:", vowels)
+    print("Consonants:", consonants)
+
+text = input("Enter string: ")
+
+count_vc(text)
+</pre>
+</div>
+
+<hr>
+
+<div id="slip10">
+<b>Slip 10</b>
+
+<p><b>Q1)</b> Write a Python program to define a function that counts the number of digits in a given number.</p>
+
+<pre>
+def count_digits(n):
+    return len(str(n))
+
+num = int(input("Enter number: "))
+
+print("Number of digits:", count_digits(num))
+</pre>
+
+<p><b>Q2)</b> Write a Python program to check whether a number is Armstrong or not.</p>
+
+<pre>
+num = int(input("Enter number: "))
+
+sum = 0
+temp = num
+
+while temp > 0:
+    digit = temp % 10
+    sum += digit ** 3
+    temp //= 10
+
+if num == sum:
+    print("Armstrong Number")
+else:
+    print("Not Armstrong Number")
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Write a Python program to count the number of strings where the string length is 3 or more and the first and last characters are the same.</p>
+
+<pre>
+lst = ["abc","xyz","aba","1221","aa"]
+
+count = 0
+
+for s in lst:
+    if len(s) >= 3 and s[0] == s[-1]:
+        count += 1
+
+print("Count:", count)
+</pre>
+</div>
+
+<hr>
+
+<div id="slip11">
+<b>Slip 11</b>
+
+<p><b>Q1)</b> Write a Python program to remove duplicates from a list and display resultant list.</p>
+
+<pre>
+lst = [1, 2, 2, 3, 4, 4, 5]
+
+res = list(set(lst))
+
+print("List after removing duplicates:", res)
+</pre>
+
+<p><b>Q2)</b> Accept a sentence, count words and find longest & shortest word.</p>
+
+<pre>
+s = "python is easy language"
+
+words = s.split()
+
+print("Number of words:", len(words))
+print("Longest word:", max(words, key=len))
+print("Shortest word:", min(words, key=len))
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Print all odd numbers between 1 and 50 using while loop.</p>
+
+<pre>
+i = 1
+
+while i <= 50:
+    if i % 2 != 0:
+        print(i, end=" ")
+    i += 1
+</pre>
+</div>
+
+<hr>
+
+<div id="slip12">
+<b>Slip 12</b>
+
+<p><b>Q1)</b> Arrange string so lowercase letters come first.</p>
+
+<pre>
+s = "PyThOn123"
+
+lower = ""
+upper = ""
+
+for ch in s:
+    if ch.islower():
+        lower += ch
+    else:
+        upper += ch
+
+print(lower + upper)
+</pre>
+
+<p><b>Q2)</b> Check number divisible by 5 and 7 and even/odd.</p>
+
+<pre>
+n = 35
+
+if n % 5 == 0 and n % 7 == 0:
+    print("Divisible by 5 and 7")
+else:
+    print("Not divisible by both")
+
+if n % 2 == 0:
+    print("Even")
+else:
+    print("Odd")
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Count even and odd elements.</p>
+
+<pre>
+lst = [1,2,3,4,5,6]
+
+even = []
+odd = []
+
+for i in lst:
+    if i % 2 == 0:
+        even.append(i)
+    else:
+        odd.append(i)
+
+print("Even:", even)
+print("Odd:", odd)
+</pre>
+</div>
+
+<hr>
+
+<div id="slip13">
+<b>Slip 13</b>
+
+<p><b>Q1)</b> Swap two numbers.</p>
+
+<pre>
+a = 10
+b = 20
+
+a, b = b, a
+
+print(a, b)
+</pre>
+
+<p><b>Q2)</b> Find words containing both letters and digits.</p>
+
+<pre>
+s = "abc123 hello 456test python"
+
+words = s.split()
+
+for w in words:
+    if any(c.isdigit() for c in w) and any(c.isalpha() for c in w):
+        print(w)
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Remove all occurrences of element from list.</p>
+
+<pre>
+lst = [1,2,3,2,4,2]
+x = 2
+
+lst = [i for i in lst if i != x]
+
+print(lst)
+</pre>
+</div>
+
+<hr>
+
+<div id="slip14">
+<b>Slip 14</b>
+
+<p><b>Q1)</b> Interchange first and last element of list.</p>
+
+<pre>
+lst = [1,2,3,4,5]
+
+lst[0], lst[-1] = lst[-1], lst[0]
+
+print(lst)
+</pre>
+
+<p><b>Q2)</b> Find common characters and check equality.</p>
+
+<pre>
+s1 = "hello"
+s2 = "world"
+
+common = set(s1) & set(s2)
+
+print("Common:", common)
+
+if s1 == s2:
+    print("Equal")
+else:
+    print("Not Equal")
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Fibonacci sequence.</p>
+
+<pre>
+n = 5
+
+a, b = 0, 1
+
+for i in range(n):
+    print(a, end=" ")
+    a, b = b, a + b
+</pre>
+</div>
+
+<hr>
+
+<div id="slip15">
+<b>Slip 15</b>
+
+<p><b>Q1)</b> Square elements and reverse list.</p>
+
+<pre>
+lst = [1,2,3,4]
+
+sq = [i*i for i in lst]
+
+sq.reverse()
+
+print(sq)
+</pre>
+
+<p><b>Q2)</b> Sum of natural numbers.</p>
+
+<pre>
+n = 5
+
+sum = 0
+
+for i in range(1, n+1):
+    sum += i
+
+print(sum)
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Reverse sentence words.</p>
+
+<pre>
+s = "python is easy"
+
+words = s.split()
+
+print(" ".join(words[::-1]))
+</pre>
+</div>
+
+<hr>
+
+<div id="slip16">
+<b>Slip 16</b>
+
+<p><b>Q1)</b> Check leap year.</p>
+
+<pre>
+year = 2024
+
+if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+    print("Leap Year")
+else:
+    print("Not Leap Year")
+</pre>
+
+<p><b>Q2)</b> Remove duplicate characters and replace space.</p>
+
+<pre>
+s = "hello world"
+
+res = ""
+
+for ch in s:
+    if ch not in res:
+        res += ch
+
+res = res.replace(" ", "_")
+
+print(res)
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Write a Python program to square list elements and print in reverse order.</p>
+
+<pre>
+lst = [1,2,3,4]
+
+res = [i*i for i in lst]
+
+res.reverse()
+
+print(res)
+</pre>
+</div>
+
+<hr>
+
+<div id="slip17">
+<b>Slip 17</b>
+
+<p><b>Q1)</b> Check palindrome.</p>
+
+<pre>
+s = "madam"
+
+if s == s[::-1]:
+    print("Palindrome")
+else:
+    print("Not Palindrome")
+</pre>
+
+<p><b>Q2)</b> Decimal to binary.</p>
+
+<pre>
+n = 10
+
+print(bin(n)[2:])
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Sort tuple.</p>
+
+<pre>
+t = (2,4,6,1,4,7.8,2.7)
+
+print(tuple(sorted(t)))
+</pre>
+</div>
+
+<hr>
+
+<div id="slip18">
+<b>Slip 18</b>
+
+<p><b>Q1)</b> Maximum of three numbers.</p>
+
+<pre>
+a, b, c = 10, 20, 15
+
+print(max(a,b,c))
+</pre>
+
+<p><b>Q2)</b> Check element in tuple.</p>
+
+<pre>
+t = (1,2,3,4)
+
+x = 3
+
+if x in t:
+    print("Exists")
+else:
+    print("Not Exists")
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Write a Python program to find the length of a set.</p>
+
+<pre>
+s = {1,2,3,4}
+
+count = 0
+
+for i in s:
+    count += 1
+
+print(count)
+</pre>
+</div>
+
+<hr>
+
+<div id="slip19">
+<b>Slip 19</b>
+
+<p><b>Q1)</b> Check prime number.</p>
+
+<pre>
+n = 7
+
+for i in range(2, n):
+    if n % i == 0:
+        print("Not Prime")
+        break
+else:
+    print("Prime")
+</pre>
+
+<p><b>Q2)</b> Combine dictionaries.</p>
+
+<pre>
+d1 = {'a':100,'b':200,'c':300}
+d2 = {'a':300,'b':200,'d':400}
+
+res = {}
+
+for k in d1:
+    res[k] = d1[k]
+
+for k in d2:
+    if k in res:
+        res[k] += d2[k]
+    else:
+        res[k] = d2[k]
+
+print(res)
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Write a Python program to convert a tuple to a string and display it in reverse.</p>
+
+<pre>
+t = ('h','e','l','l','o')
+
+print("".join(t)[::-1])
+</pre>
+</div>
+
+<hr>
+
+<div id="slip20">
+<b>Slip 20</b>
+
+<p><b>Q1)</b> Write a Python program to reverse words in a given string.</p>
+
+<pre>
+s = "python programming language"
+
+print(" ".join(s.split()[::-1]))
+</pre>
+
+<p><b>Q2)</b> Write a Python program to remove all even numbers from a list.</p>
+
+<pre>
+lst = [1,2,3,4,5,6]
+
+print([i for i in lst if i%2 != 0])
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Write a Python program to print all prime numbers in a given range.</p>
+
+<pre>
+for n in range(1,20):
+    if n > 1:
+        for i in range(2,n):
+            if n % i == 0:
+                break
+        else:
+            print(n, end=" ")
+</pre>
+</div>
+
+<hr>
+
+<div id="slip21">
+<b>Slip 21</b>
+
+<p><b>Q1)</b> Write a Python function to accept three numbers and find the minimum.</p>
+
+<pre>
+def minimum(a,b,c):
+    return min(a,b,c)
+
+print(minimum(10,5,8))
+</pre>
+
+<p><b>Q2)</b> Write a Python program to find symmetric difference of two sets.</p>
+
+<pre>
+s1 = {1,2,3}
+s2 = {3,4,5}
+
+print(s1 ^ s2)
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Write a Python program to find the student with highest marks from a dictionary.</p>
+
+<pre>
+d = {'A':80,'B':95,'C':70}
+
+print(max(d, key=d.get))
+</pre>
+</div>
+
+<hr>
+
+<div id="slip22">
+<b>Slip 22</b>
+
+<p><b>Q1)</b> Write a Python program to find factorial of a number.</p>
+
+<pre>
+n = 5
+
+fact = 1
+
+for i in range(1,n+1):
+    fact *= i
+
+print(fact)
+</pre>
+
+<p><b>Q2)</b> Write a Python program to generate dictionary (x, x*x).</p>
+
+<pre>
+n = 5
+
+d = {}
+
+for i in range(1,n+1):
+    d[i] = i*i
+
+print(d)
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Convert lowercase to uppercase and vice versa.</p>
+
+<pre>
+s = "PyThOn"
+
+print(s.swapcase())
+</pre>
+</div>
+
+<hr>
+
+<div id="slip23">
+<b>Slip 23</b>
+
+<p><b>Q1)</b> Get 4th element from front and 6th from last in tuple.</p>
+
+<pre>
+t = (1,2,3,4,5,6,7,8)
+
+print("4th:", t[3])
+print("6th from last:", t[-6])
+</pre>
+
+<p><b>Q2)</b> Function to print sum of all numbers in a list.</p>
+
+<pre>
+def sum_list(lst):
+    return sum(lst)
+
+print(sum_list([1,2,3,4]))
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Factorial using loop.</p>
+
+<pre>
+n = 5
+
+fact = 1
+
+for i in range(1,n+1):
+    fact *= i
+
+print(fact)
+</pre>
+</div>
+
+<hr>
+
+<div id="slip24">
+<b>Slip 24</b>
+
+<p><b>Q1)</b> Split list into positive and negative numbers.</p>
+
+<pre>
+lst = [-2,3,-1,5,-4]
+
+pos = []
+neg = []
+
+for i in lst:
+    if i >= 0:
+        pos.append(i)
+    else:
+        neg.append(i)
+
+print("Positive:", pos)
+print("Negative:", neg)
+</pre>
+
+<p><b>Q2)</b> Check whether number is perfect or not.</p>
+
+<pre>
+n = 6
+
+s = 0
+
+for i in range(1,n):
+    if n % i == 0:
+        s += i
+
+print("Perfect" if s == n else "Not Perfect")
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Check substring in string.</p>
+
+<pre>
+s = "python programming"
+sub = "gram"
+
+print("Found" if sub in s else "Not Found")
+</pre>
+</div>
+
+<hr>
+
+<div id="slip25">
+<b>Slip 25</b>
+
+<p><b>Q1)</b> Check Armstrong number.</p>
+
+<pre>
+n = 153
+
+temp = n
+s = 0
+
+while n > 0:
+    d = n % 10
+    s += d**3
+    n //= 10
+
+print("Armstrong" if temp == s else "Not Armstrong")
+</pre>
+
+<p><b>Q2)</b> Find largest, smallest, sum and average of list.</p>
+
+<pre>
+lst = [10,20,30,40]
+
+print("Max:", max(lst))
+print("Min:", min(lst))
+print("Sum:", sum(lst))
+print("Avg:", sum(lst)/len(lst))
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Create dictionary from string.</p>
+
+<pre>
+s = "programming"
+
+d = {}
+
+for ch in s:
+    d[ch] = d.get(ch,0) + 1
+
+print(d)
+</pre>
+</div>
+
+<hr>
+
+<div id="slip26">
+<b>Slip 26</b>
+
+<p><b>Q1)</b> Sum all elements in list.</p>
+
+<pre>
+lst = [1,2,3,4]
+
+print(sum(lst))
+</pre>
+
+<p><b>Q2)</b> Check number in given range.</p>
+
+<pre>
+n = 5
+
+print("In range" if 1 <= n <= 10 else "Not in range")
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Create list of tuples (number, square).</p>
+
+<pre>
+lst = []
+
+for i in range(1,6):
+    lst.append((i, i*i))
+
+print(lst)
+</pre>
+</div>
+
+<hr>
+
+<div id="slip27">
+<b>Slip 27</b>
+
+<p><b>Q1)</b> Check odd or even.</p>
+
+<pre>
+n = 7
+
+print("Even" if n%2==0 else "Odd")
+</pre>
+
+<p><b>Q2)</b> Count uppercase and lowercase letters.</p>
+
+<pre>
+s = "PyThOn"
+
+u = l = 0
+
+for i in s:
+    if i.isupper():
+        u += 1
+    elif i.islower():
+        l += 1
+
+print("Upper:", u)
+print("Lower:", l)
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Partition list (negative, zero, positive).</p>
+
+<pre>
+lst = [-2,0,3,-1,5]
+
+res = [i for i in lst if i<0] + [i for i in lst if i==0] + [i for i in lst if i>0]
+
+print(res)
+</pre>
+</div>
+
+<hr>
+
+<div id="slip28">
+<b>Slip 28</b>
+
+<p><b>Q1)</b> Perform arithmetic operations.</p>
+
+<pre>
+a, b = 10, 5
+
+print(a+b, a-b, a*b, a/b, a%b)
+</pre>
+
+<p><b>Q2)</b> Union and intersection of sets.</p>
+
+<pre>
+s1 = {1,2,3}
+s2 = {2,3,4}
+
+print("Union:", s1 | s2)
+print("Intersection:", s1 & s2)
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Concatenate dictionaries.</p>
+
+<pre>
+d1={1:11,2:22}
+d2={3:33,4:44}
+d3={5:55,6:66}
+
+res = {}
+
+res.update(d1)
+res.update(d2)
+res.update(d3)
+
+print(res)
+</pre>
+</div>
+
+<hr>
+
+<div id="slip29">
+<b>Slip 29</b>
+
+<p><b>Q1)</b> Check positive, negative or zero.</p>
+
+<pre>
+n = -5
+
+if n > 0:
+    print("Positive")
+elif n < 0:
+    print("Negative")
+else:
+    print("Zero")
+</pre>
+
+<p><b>Q2)</b> Copy elements 22 and 66 into new tuple.</p>
+
+<pre>
+t = (11,22,33,44,55,66)
+
+new = (t[1], t[5])
+
+print(new)
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Convert lowercase to uppercase and vice versa.</p>
+
+<pre>
+s = "PyThOn"
+
+print(s.swapcase())
+</pre>
+</div>
+
+<hr>
+
+<div id="slip30">
+<b>Slip 30</b>
+
+<p><b>Q1)</b> Find frequency of characters in string.</p>
+
+<pre>
+s = "hello"
+
+d = {}
+
+for ch in s:
+    d[ch] = d.get(ch,0) + 1
+
+print(d)
+</pre>
+
+<p><b>Q2)</b> Count items in dictionary without len().</p>
+
+<pre>
+d = {'a':1,'b':2,'c':3}
+
+count = 0
+
+for i in d:
+    count += 1
+
+print(count)
+</pre>
+
+<p><b>OR</b></p>
+
+<p><b>Q2)</b> Function to check prime (True/False).</p>
+
+<pre>
+def is_prime(n):
+    if n <= 1:
+        return False
+
+    for i in range(2,n):
+        if n % i == 0:
+            return False
+
+    return True
+
+print(is_prime(7))
+</pre>
+</div>
+
+  </div !CONTENT ENDS HERE>
+
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <div class="status-cell">Ln: 3</div>
+    <div class="status-cell">Col: 0</div>
+  </div>
+
+</div>
+
+</body>
+</html>

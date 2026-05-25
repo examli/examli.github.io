@@ -1,4 +1,13 @@
 title: Examli Notes
 author: Examli
-description: Personal scratchpad, code blocks, and resources.
-theme: minima
+description: A sleek, professional developer scratchpad for code, notes, and files.
+
+# This switches Minima from boring white to a gorgeous, premium dark mode layout
+minima:
+  skin: dark
+  date_format: "%b %-d, %Y"
+
+# These plugins add beautiful SEO previews and automated feed structures
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag

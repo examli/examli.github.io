@@ -1,7 +1,11 @@
 ---
 layout: home
+title: Dashboard
 ---
 
-# 📝 Welcome to My Notebook
+# 🚀 System Scratchpad & Engineering Notes
 
-This is a clean space where I keep snippets, cheat sheets, and active code blocks. Everything is organized by date below.
+Welcome to my personal database. This unbranded terminal space logs active scripts, configuration blocks, and resource files.
+
+### 📑 Active Logs & Cheat Sheets
+*(Select a post below to view dedicated code syntax, blocks, and file attachments)*

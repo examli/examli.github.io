@@ -2,3 +2,5 @@ title: Examli
 description: 
 permalink: /:title/
 future: true
+highlighter: rouge
+markdown: kramdown

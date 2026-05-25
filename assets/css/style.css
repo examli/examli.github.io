@@ -1,87 +1,178 @@
-/* --- PROFESSIONAL DARK TECH THEME --- */
+/* --- MODERN PREMIUM TECH THEME --- */
 :root {
-  --bg-color: #0d1117;
-  --text-color: #c9d1d9;
-  --accent-color: #58a6ff;
-  --card-bg: #161b22;
-  --border-color: #30363d;
+  --bg-main: #080b11;
+  --bg-sidebar: #0f141c;
+  --bg-card: #141b24;
+  --border-color: #1e293b;
+  --text-main: #cbd5e1;
+  --text-muted: #64748b;
+  --text-white: #f8fafc;
+  --accent: #38bdf8; /* Cyber Cyan */
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   margin: 0;
-  padding: 40px 20px;
-  line-height: 1.6;
+  padding: 0;
+  min-height: 100vh;
 }
 
-.wrapper {
-  max-width: 900px;
-  margin: 0 auto;
+/* Master Grid Structure */
+.blog-container {
   display: grid;
   grid-template-columns: 280px 1fr;
-  gap: 40px;
+  min-height: 100vh;
 }
 
-/* Sidebar Styling (No Github Buttons) */
-header {
+/* Sidebar Styling */
+.sidebar {
+  background-color: var(--bg-sidebar);
   border-right: 1px solid var(--border-color);
-  padding-right: 20px;
+  padding: 40px 24px;
 }
 
-header h1 a {
-  color: var(--accent-color);
-  text-decoration: none;
-  font-size: 26px;
+.sidebar-sticky {
+  position: sticky;
+  top: 40px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 80px);
+}
+
+.brand {
+  margin-bottom: 40px;
+}
+
+.logo {
+  font-size: 22px;
   font-weight: 700;
+  color: var(--text-white);
+  text-decoration: none;
+  letter-spacing: -0.03em;
 }
 
-header p {
-  color: #8b949e;
+.bio {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-item {
+  color: var(--text-main);
+  text-decoration: none;
   font-size: 14px;
+  font-weight: 500;
+  padding: 10px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  background-color: var(--bg-card);
+  color: var(--accent);
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #10b981;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px #10b981;
 }
 
 /* Main Content Area */
-section {
-  padding-left: 10px;
+.main-content {
+  padding: 60px 40px;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
 }
 
+.content-wrapper {
+  width: 100%;
+  max-width: 720px;
+}
+
+/* Typography Inside Posts */
 h1, h2, h3 {
-  color: #f0f6fc;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 8px;
+  color: var(--text-white);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-/* Professional Code Blocks */
+h1 { font-size: 32px; margin-bottom: 24px; }
+h2 { font-size: 24px; margin-top: 32px; margin-bottom: 16px; }
+h3 { font-size: 18px; margin-top: 24px; }
+
+p {
+  line-height: 1.7;
+  color: var(--text-main);
+  font-size: 15px;
+}
+
+/* Premium Code Blocks */
 pre, code {
-  background-color: var(--card-bg);
+  background-color: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
-  font-family: ui-monospace, SFMono-Regular, SF Pro Mono, Menlo, Monaco, Consolas, monospace;
-  font-size: 14px;
+  border-radius: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 code {
   padding: 3px 6px;
-  color: #ff7b72;
+  color: #f43f5e;
+  font-size: 13.5px;
 }
 
 pre {
-  padding: 16px;
-  overflow: auto;
+  padding: 20px;
+  overflow-x: auto;
+  margin: 20px 0;
 }
 
 pre code {
-  color: #e6edf3;
+  color: #e2e8f0;
   background: none;
-  border: none;
   padding: 0;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
-/* Links & Files */
+/* List / Post links styling */
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
 a {
-  color: var(--accent-color);
+  color: var(--accent);
   text-decoration: none;
 }
 
@@ -89,14 +180,10 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Footer & Extra GitHub Garbage ko Hide karne ke liye */
-footer, .downloads, ul.downloads, iframe, .github-corner {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-}
-
+/* Responsive (Mobile view correction) */
 @media (max-width: 768px) {
-  .wrapper { grid-template-columns: 1fr; gap: 20px; }
-  header { border-right: none; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
+  .blog-container { grid-template-columns: 1fr; }
+  .sidebar { border-right: none; border-bottom: 1px solid var(--border-color); padding: 30px 20px; }
+  .sidebar-sticky { height: auto; }
+  .main-content { padding: 40px 20px; }
 }

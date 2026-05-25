@@ -1,6 +1,6 @@
 ---
 
-layout: post
+layout: default
 title: "C Pointers and Dynamic Memory Allocation Explained Like a Systems Programmer"
 date: 2026-05-26 10:30:00 +0530
 category: [Coding]

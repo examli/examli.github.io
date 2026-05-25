@@ -3,37 +3,26 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <title>{{ page.title }} | {{ site.title }}</title>
     <link rel="stylesheet" href="/assets/css/style.css">
   </head>
   <body>
 
-    <div class="blog-container">
-      
-      <aside class="sidebar">
-        <div class="sidebar-sticky">
-          <div class="brand">
-            <a href="/" class="logo">{{ site.title }}</a>
-            <p class="bio">{{ site.description }}</p>
-          </div>
-          
-          <nav class="nav-links">
-            <a href="/" class="nav-item">⌘ Dashboard</a>
-            <a href="https://sojwal.dev" target="_blank" class="nav-item">↗ Main Portfolio</a>
-          </nav>
-          
-          <div class="sidebar-footer">
-            <span class="status-dot"></span> System Operational
-          </div>
-        </div>
-      </aside>
+    <header class="tc-navbar">
+      <div class="navbar-container">
+        <a href="/" class="tc-logo">TC</a>
+        <nav class="tc-nav-links">
+          <a href="#" class="active">Latest</a>
+          <a href="#">Startups</a>
+          <a href="#">Security</a>
+          <a href="#">AI</a>
+          <a href="https://sojwal.dev" target="_blank">Portfolio ↗</a>
+        </nav>
+      </div>
+    </header>
 
-      <main class="main-content">
-        <div class="content-wrapper">
-          {{ content }}
-        </div>
-      </main>
-
+    <div class="tc-container">
+      {{ content }}
     </div>
 
   </body>

@@ -132,35 +132,48 @@ p {
   margin-bottom: 20px;
 }
 
-/* Premium Clean Code Blocks */
+/* --- VS CODE HIGHLIGHTER THEME --- */
 pre, code {
-  background-color: #f7f9fa;
-  border: 1px solid #e1e8ed;
-  border-radius: 6px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 code {
   padding: 3px 6px;
-  color: #dc2626; /* Clean red snippet text */
+  color: #ff79c6; /* Pink snippet for inline text */
+  background-color: #282a36;
+  border-radius: 4px;
   font-size: 14px;
 }
 
 pre {
+  background-color: #1e1e1e; /* Exact VS Code Dark Background */
+  color: #d4d4d4; /* Default Text */
   padding: 18px;
   overflow-x: auto;
   margin: 24px 0;
-  display: block;
+  border-radius: 8px;
+  border: 1px solid #2d2d2d;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 pre code {
-  color: var(--text-main);
+  color: #d4d4d4;
   background: none;
   border: none;
   padding: 0;
   font-size: 14px;
   line-height: 1.6;
 }
+
+/* Rouge Standard Code Tokens (VS Code Mapping) */
+.highlight .c, .highlight .c1 { color: #6a9955; font-style: italic; } /* Comments (Green) */
+.highlight .k, .highlight .kd { color: #569cd6; font-weight: bold; } /* Keywords/Def/Return (Blue) */
+.highlight .nf { color: #dcdcaa; } /* Functions (Yellow) */
+.highlight .s, .highlight .s2 { color: #ce9178; } /* Strings (Orange/Brown) */
+.highlight .nb { color: #4ec9b0; } /* Built-ins/print/int (Cyan) */
+.highlight .nn { color: #4ec9b0; } /* Imports/Modules */
+.highlight .mi { color: #b5cea8; } /* Numbers (Light Green) */
+.highlight .o { color: #d4d4d4; } /* Operators */
 
 /* Responsive Fixes */
 @media (max-width: 768px) {

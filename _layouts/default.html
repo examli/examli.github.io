@@ -3,14 +3,38 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ site.title }}</title>
+    <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
     <link rel="stylesheet" href="/assets/css/style.css">
   </head>
   <body>
-    <div class="wrapper">
-        <h1><a href="/">{{ site.title }}</a></h1>
-        <p>{{ site.description }}</p>
-        {{ content }}
+
+    <div class="blog-container">
+      
+      <aside class="sidebar">
+        <div class="sidebar-sticky">
+          <div class="brand">
+            <a href="/" class="logo">{{ site.title }}</a>
+            <p class="bio">{{ site.description }}</p>
+          </div>
+          
+          <nav class="nav-links">
+            <a href="/" class="nav-item">⌘ Dashboard</a>
+            <a href="https://sojwal.dev" target="_blank" class="nav-item">↗ Main Portfolio</a>
+          </nav>
+          
+          <div class="sidebar-footer">
+            <span class="status-dot"></span> System Operational
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <div class="content-wrapper">
+          {{ content }}
+        </div>
+      </main>
+
     </div>
+
   </body>
 </html>

@@ -8,7 +8,7 @@ category: "DevOps"
 
 In modern infrastructure management, unexpected downtime is the ultimate enemy. To prevent silent failures across our core infrastructure, I developed a lightweight automated monitoring script designed to actively query cluster nodes and verify database synchronization states.
 
-This automation acts as a first line of line defense, running background health checks across critical microservices before executing automated cache clears or database sync routines.
+This automation acts as a first line of defense, running background health checks across critical microservices before executing automated cache clears or database sync routines.
 
 ### 🐍 Production Python Automation Script
 

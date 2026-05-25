@@ -1,13 +1,7 @@
 ---
-layout: default
+layout: home
 ---
 
-# 📝 My Personal Scratchpad
+# 📝 Welcome to My Notebook
 
-Welcome! This is where I drop quick notes and code clips.
-
-### Quick Python Snippet
-```python
-def hello_world():
-    print("Hello from GitHub Pages!")
-```
+This is a clean space where I keep snippets, cheat sheets, and active code blocks. Everything is organized by date below.

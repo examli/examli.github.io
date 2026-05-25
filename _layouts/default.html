@@ -24,5 +24,42 @@
       {{ content }}
     </div>
 
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const codeBlocks = document.querySelectorAll('.highlighter-rouge pre.highlight');
+
+        codeBlocks.forEach(function (codeBlock) {
+          // Create button element
+          const button = document.createElement('button');
+          button.className = 'copy-code-btn';
+          button.type = 'button';
+          button.innerText = 'Copy';
+
+          // Insert button inside the container wrapper
+          const container = codeBlock.closest('.highlighter-rouge');
+          container.insertBefore(button, codeBlock);
+
+          // Add click event listener
+          button.addEventListener('click', function () {
+            const codeText = codeBlock.querySelector('code').innerText;
+
+            navigator.clipboard.writeText(codeText).then(function () {
+              button.innerText = 'Copied!';
+              button.classList.add('copied');
+
+              // Reset button state after 2 seconds
+              setTimeout(function () {
+                button.innerText = 'Copy';
+                button.classList.remove('copied');
+              }, 2000);
+            }).catch(function (error) {
+              console.error('Failed to copy code: ', error);
+              button.innerText = 'Error';
+            });
+          });
+        });
+      });
+    </script>
+    
   </body>
 </html>

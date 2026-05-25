@@ -1,7 +1,7 @@
 {
-  "name": "ExamPrep",
-  "short_name": "ExamPrep",
-  "description": "Minimal Tech Journal and DevOps Devlog.",
+  "name": "Byte: Technical Journal",
+  "short_name": "byte",
+  "description": "Minimal Technical Journal, System Architecture & DevOps Logs.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

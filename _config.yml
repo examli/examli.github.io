@@ -1,5 +1,6 @@
-title: ExamPrep 
-description: 
+title: byte
+description: Minimal Technical Journal, System Architecture & DevOps Logs
+url: "https://byte.sojwal.dev"
 permalink: /:title/
 future: true
 highlighter: rouge

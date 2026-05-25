@@ -4,24 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ page.title }} | {{ site.title }}</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="/assets/css/style.css">
   </head>
   <body>
 
-    <header class="tc-navbar">
-      <div class="navbar-container">
-        <a href="/" class="tc-logo">EXAMLI</a>
-        <nav class="tc-nav-links">
-          <a href="#" class="active">Latest</a>
-          <a href="#">Startups</a>
-          <a href="#">Security</a>
-          <a href="#">AI</a>
-          <a href="https://sojwal.dev" target="_blank">Portfolio ↗</a>
-        </nav>
+    <header class="clean-header">
+      <div class="header-container">
+        <a href="/" class="site-logo">{{ site.title }}</a>
+        <p class="site-bio">{{ site.description }}</p>
       </div>
     </header>
 
-    <div class="tc-container">
+    <div class="clean-container">
       {{ content }}
     </div>
 

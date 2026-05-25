@@ -81,6 +81,18 @@
         });
       }
     </script>
-        
+
+    <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
+    <script>
+      window.simpleJekyllSearch = SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('results-container'),
+        json: '/search.json',
+        searchResultTemplate: '<li class="search-item"><span class="post-category">{category}</span><a href="{url}">{title}</a><span class="search-date">{date}</span></li>',
+        noResultsText: '<li class="no-results">No posts found matching your query</li>',
+        limit: 5
+      });
+    </script>
+    
   </body>
 </html>

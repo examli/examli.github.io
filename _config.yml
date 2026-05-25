@@ -1,5 +1,4 @@
 title: Examli Notes
-description: Code clips, quick thoughts, and scratchpad.
-theme: jekyll-theme-minimal
-github:
-  is_project_page: false
+author: Examli
+description: Personal scratchpad, code blocks, and resources.
+theme: minima

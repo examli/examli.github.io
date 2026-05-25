@@ -23,16 +23,15 @@ If you want to truly understand computer architecture, memory management, and ho
 Let's break down the classic entry point of C programming. Here is a production-style implementation of the traditional "Hello, World!" sequence:
 
 ```c
+
 #include <stdio.h>
 
-/**
- * main - Entry point of the application
- * * Return: Always 0 (Success)
- */
 int main(void)
 {
     // Print string to standard output
     printf("Hello, World! Welcome to C architecture.\n");
     
-    return (0);
+    return 0;
 }
+
+```

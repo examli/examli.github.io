@@ -1,13 +1,12 @@
 ---
 layout: default
 title: "Python Automation & API Script"
+category: "Automation"
 ---
 
-<h1 class="blog-title">Examli Notes</h1>
+# Python Automation & API Script
 
-<h2 class="post-title">Python Automation & API Script</h2>
-
-<p class="intro-text">Is notebook post mein maine database sync aur server monitoring ka active code save kiya hai.</p>
+Is notebook post mein maine database sync aur server monitoring ka active code save kiya hai.
 
 ### 🐍 Production Python Code
 Yeh script background database systems ko automatically test aur clear karti hai:

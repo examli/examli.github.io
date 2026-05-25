@@ -180,6 +180,40 @@ pre.highlight code {
 .highlight .nc { color: #4ec9b0; } /* Classes */
 .highlight .na, .highlight .nv { color: #9cdcfe; } /* Variables/Attributes (Light Blue) */
 
+/* --- COPY BUTTON STYLING --- */
+.highlighter-rouge {
+  position: relative;
+}
+
+.copy-code-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #a0a0a0;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-family: 'Manrope', sans-serif;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.copy-code-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border-color: #00a862;
+}
+
+.copy-code-btn.copied {
+  background: #00a862;
+  color: #ffffff;
+  border-color: #00a862;
+}
+
 /* Responsive Fixes */
 @media (max-width: 768px) {
   .clean-header, .clean-container {

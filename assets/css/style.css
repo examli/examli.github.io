@@ -1,192 +1,176 @@
+/* --- PREMIUM MANROPE ULTRA-CLEAN TECH THEME --- */
 :root {
-  --tc-green: #00a862;
-  --tc-black: #060606;
-  --tc-gray-text: #555555;
-  --tc-border: #e2e2e2;
-  --tc-purple: #4a154b;
+  --text-main: #1a1a1a;
+  --text-muted: #666666;
+  --text-light: #888888;
+  --border-line: #f5f5f5;
+  --accent-green: #00a862; /* Sharp focus tag color */
 }
 
 body {
   background-color: #ffffff;
-  color: var(--tc-black);
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: var(--text-main);
+  font-family: 'Manrope', sans-serif;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Navbar */
-.tc-navbar {
-  border-bottom: 1px solid var(--tc-border);
-  padding: 15px 0;
-  position: sticky;
-  top: 0;
-  background: #fff;
-  z-index: 100;
-}
-
-.navbar-container {
-  max-width: 1140px;
+/* Base Layout Structure (Single Column Content) */
+.clean-container {
+  max-width: 680px; /* Reading ke liye sabse perfect width */
   margin: 0 auto;
-  display: flex;
-  align-items: center;
+  padding: 0 20px 80px 20px;
+}
+
+/* Header Section (No Menu Bar, Just Brand Info) */
+.clean-header {
+  max-width: 680px;
+  margin: 60px auto 40px auto;
   padding: 0 20px;
 }
 
-.tc-logo {
-  font-size: 26px;
-  font-weight: 900;
-  color: var(--tc-black);
-  text-decoration: none;
-  letter-spacing: -1px;
-  margin-right: 40px;
-}
-
-.tc-nav-links a {
-  color: var(--tc-gray-text);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 700;
-  margin-right: 20px;
-}
-
-.tc-nav-links a.active {
-  color: var(--tc-green);
-}
-
-/* Main Grid */
-.tc-container {
-  max-width: 1140px;
-  margin: 40px auto;
-  padding: 0 20px;
-}
-
-.tc-main-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 50px;
-}
-
-/* Feed List */
-.section-title {
-  font-size: 36px;
+.site-logo {
+  font-size: 28px;
   font-weight: 800;
-  color: var(--tc-green);
-  margin-top: 0;
-  margin-bottom: 30px;
+  color: #000000;
+  text-decoration: none;
+  letter-spacing: -0.04em;
 }
 
-.post-card {
-  display: flex;
-  justify-content: space-between;
-  padding: 25px 0;
-  border-bottom: 1px solid var(--tc-border);
-  gap: 20px;
+.site-logo:hover {
+  color: var(--accent-green);
 }
 
-.post-text {
-  flex: 1;
+.site-bio {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 6px 0 0 0;
+  font-weight: 400;
+}
+
+/* Feed Headers */
+.feed-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-light);
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* Post List & Cards (No Images, No Sidebars) */
+.clean-post-card {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border-line);
 }
 
 .post-category {
-  color: var(--tc-green);
+  color: var(--accent-green);
   font-size: 11px;
   font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 .post-title {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
-  margin: 8px 0;
+  margin: 6px 0 10px 0;
   line-height: 1.4;
+  letter-spacing: -0.02em;
 }
 
 .post-title a {
-  color: var(--tc-black);
+  color: var(--text-main);
   text-decoration: none;
+  transition: color 0.15s ease;
 }
 
 .post-title a:hover {
-  color: var(--tc-green);
+  color: var(--accent-green);
 }
 
 .post-meta {
   font-size: 13px;
-  color: var(--tc-gray-text);
+  color: var(--text-muted);
+  font-weight: 500;
 }
 
-/* Post Image Thumbnails */
-.post-thumb img, .post-thumb.default-thumb {
-  width: 160px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 4px;
+/* --- Typography Inside Post Pages --- */
+h1 { 
+  font-size: 32px; 
+  font-weight: 800; 
+  letter-spacing: -0.03em; 
+  color: #000000; 
+  margin-top: 0;
+  margin-bottom: 8px;
 }
 
-.post-thumb.default-thumb {
-  background-color: #f3f4f6;
-  border: 1px solid var(--tc-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--tc-gray-text);
-  font-weight: 700;
+h2 { 
+  font-size: 24px; 
+  font-weight: 700; 
+  letter-spacing: -0.02em; 
+  margin-top: 40px; 
+  margin-bottom: 12px;
 }
 
-/* Sidebar Box styling */
-.popular-box {
-  background-color: var(--tc-purple);
-  color: #ffffff;
-  padding: 30px 25px;
-  border-radius: 4px;
-  position: sticky;
-  top: 100px;
+h3 { 
+  font-size: 18px; 
+  font-weight: 600; 
+  margin-top: 24px;
+  margin-bottom: 12px;
 }
 
-.popular-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-  padding-bottom: 15px;
+p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #222222;
+  font-weight: 400;
   margin-bottom: 20px;
 }
 
-.popular-header h2 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: 800;
+/* Premium Clean Code Blocks */
+pre, code {
+  background-color: #f7f9fa;
+  border: 1px solid #e1e8ed;
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
-.trend-icon {
-  font-size: 24px;
-  background: rgba(255,255,255,0.2);
-  padding: 2px 10px;
-  border-radius: 4px;
+code {
+  padding: 3px 6px;
+  color: #dc2626; /* Clean red snippet text */
+  font-size: 14px;
 }
 
-.popular-list {
-  list-style: none;
+pre {
+  padding: 18px;
+  overflow-x: auto;
+  margin: 24px 0;
+  display: block;
+}
+
+pre code {
+  color: var(--text-main);
+  background: none;
+  border: none;
   padding: 0;
-  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
-.popular-list li {
-  margin-bottom: 20px;
-  line-height: 1.4;
-}
-
-.popular-list a {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 600;
-}
-
-/* Responsive */
+/* Responsive Fixes */
 @media (max-width: 768px) {
-  .tc-main-grid { grid-template-columns: 1fr; }
-  .post-thumb img, .post-thumb.default-thumb { width: 100px; height: 70px; }
-  .post-title { font-size: 17px; }
+  .clean-header, .clean-container {
+    padding: 0 16px;
+  }
+  .clean-header {
+    margin: 40px auto 20px auto;
+  }
+  .post-title {
+    font-size: 19px;
+  }
 }

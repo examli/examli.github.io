@@ -54,3 +54,160 @@ category: "DBMS"
     </tr>
 
 </table>
+
+
+# Introduction to DBMS
+
+---
+
+# Definition of DBMS
+
+A **Database Management System (DBMS)** is software that is used to create, store, organize, manage, and retrieve data efficiently from a database.
+
+It acts as an interface between the **user/application** and the **database**.
+
+### Examples:
+- MySQL
+- Oracle
+- PostgreSQL
+- SQL Server
+- MongoDB
+
+---
+
+# What is a Database?
+
+A **database** is an organized collection of related data stored in a structured form.
+
+### Example:
+A college database may contain:
+- Student details
+- Faculty records
+- Attendance
+- Examination data
+
+---
+
+# Need for DBMS
+
+Traditional file systems had many problems:
+- Data redundancy
+- Data inconsistency
+- Difficult data access
+- Lack of security
+- No proper backup mechanism
+
+DBMS was introduced to overcome these limitations.
+
+---
+
+# Functions of DBMS
+
+## 1. Data Storage
+Stores large amounts of data systematically.
+
+## 2. Data Retrieval
+Allows fast searching and retrieval of data using queries.
+
+## 3. Data Manipulation
+Supports insertion, deletion, and updating of data.
+
+## 4. Data Security
+Prevents unauthorized access using authentication and permissions.
+
+## 5. Backup and Recovery
+Provides recovery mechanisms in case of system failure.
+
+## 6. Concurrency Control
+Allows multiple users to access data simultaneously without conflict.
+
+---
+
+# Characteristics of DBMS
+
+| Characteristic | Description |
+|---|---|
+| Reduced Redundancy | Duplicate data is minimized |
+| Data Consistency | Same data remains accurate everywhere |
+| Data Sharing | Multiple users can access data |
+| Security | Unauthorized access is restricted |
+| Integrity | Accuracy and validity of data maintained |
+| Backup & Recovery | Data can be restored after failure |
+
+---
+
+# Components of DBMS
+
+## 1. Hardware
+Physical devices such as computers and storage devices.
+
+## 2. Software
+DBMS software like Oracle or MySQL.
+
+## 3. Data
+Actual stored information.
+
+## 4. Users
+People who interact with the database.
+
+## 5. Procedures
+Rules and instructions for using the DBMS.
+
+---
+
+# Advantages of DBMS
+
+- Reduces data redundancy
+- Improves data consistency
+- Provides better security
+- Supports multiple users
+- Faster data access
+- Easy backup and recovery
+
+---
+
+# Disadvantages of DBMS
+
+- High cost of software and hardware
+- Complex system design
+- Requires skilled personnel
+- Large memory usage
+
+---
+
+# Real-Life Applications of DBMS
+
+- Banking systems
+- Railway reservation systems
+- Hospital management
+- Online shopping websites
+- University management systems
+
+---
+
+# Simple Architecture of DBMS
+
+```text
+User/Application
+        ↓
+      DBMS
+        ↓
+    Database
+```
+
+---
+
+# Important Exam Points
+
+- DBMS acts as an intermediary between users and data.
+- Main goal of DBMS is efficient data management.
+- DBMS reduces redundancy and improves consistency.
+- Examples of DBMS are frequently asked in exams.
+
+---
+
+# Conclusion
+
+DBMS is an essential software system used for efficient storage, retrieval, and management of data. It provides security, consistency, sharing, and recovery features, making it superior to traditional file systems.
+
+---

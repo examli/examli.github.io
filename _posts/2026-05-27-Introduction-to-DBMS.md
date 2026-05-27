@@ -55,11 +55,6 @@ category: "DBMS"
 
 </table>
 
-
-# Introduction to DBMS
-
----
-
 # Definition of DBMS
 
 A **Database Management System (DBMS)** is software that is used to create, store, organize, manage, and retrieve data efficiently from a database.

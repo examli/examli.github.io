@@ -1,7 +1,7 @@
 ---
 
 layout: default
-title: "[Python for automation]"
+title: "Python for automation"
 category: "[Programming]"
 ---
 

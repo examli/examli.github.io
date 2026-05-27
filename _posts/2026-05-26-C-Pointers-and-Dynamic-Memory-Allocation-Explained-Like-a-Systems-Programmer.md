@@ -2,7 +2,7 @@
 
 layout: default
 title: "Python for automation"
-category: "[Programming]"
+category: "Programming"
 ---
 
 ## Understanding Python Automation

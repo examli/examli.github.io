@@ -456,3 +456,341 @@ Although DBMS is superior in most cases, file systems may still be used:
 
 A File System is a traditional method of storing data in separate files, whereas a DBMS provides a centralized, organized, and secure approach to data management. File systems suffer from redundancy, inconsistency, and poor security, while DBMS overcomes these limitations by providing efficient storage, integrity, concurrency control, and better data management. Therefore, DBMS is preferred for modern large-scale applications and organizations.
 
+# Data Models – Relational, Hierarchical, Network
+
+## Introduction to Data Models
+
+A **Data Model** is a collection of concepts used to describe the structure of a database, relationships among data, and constraints on data. It defines how data is stored, organized, connected, and manipulated in a database system.
+
+Data models provide a logical framework for database design and help users understand how data is represented inside the DBMS.
+
+---
+
+## Importance of Data Models
+
+* Provide structure for organizing data
+* Define relationships between data items
+* Help in database design
+* Improve data consistency and integrity
+* Make data retrieval easier
+* Serve as a communication tool between developers and users
+
+---
+
+# Types of Data Models
+
+The major data models are:
+
+1. Hierarchical Data Model
+2. Network Data Model
+3. Relational Data Model
+
+---
+
+# Hierarchical Data Model
+
+## Definition
+
+The **Hierarchical Data Model** organizes data in the form of a tree-like structure where records are connected through parent-child relationships.
+
+* One parent can have many children.
+* Each child can have only one parent.
+* Data is stored in hierarchical levels.
+
+This model resembles an organizational chart or family tree.
+
+---
+
+## Structure of Hierarchical Model
+
+* Topmost node is called the **Root**
+* Intermediate nodes represent parent records
+* Bottom nodes represent child records
+
+### Example
+
+A college database:
+
+* College
+
+  * Department
+
+    * Teacher
+    * Student
+
+Here:
+
+* College is the parent
+* Department is child of college
+* Teacher and Student are children of department
+
+---
+
+## Characteristics
+
+* Uses tree structure
+* Supports one-to-many relationship
+* Fast access through predefined paths
+* Child record depends on parent record
+
+---
+
+## Advantages of Hierarchical Model
+
+### Simple Structure
+
+Easy to understand for small hierarchical data.
+
+### Fast Data Access
+
+Accessing records through predefined paths is efficient.
+
+### Data Integrity
+
+Parent-child relationship maintains consistency.
+
+### Security
+
+Access control can be applied at different levels.
+
+---
+
+## Disadvantages of Hierarchical Model
+
+### No Many-to-Many Relationship
+
+Cannot efficiently represent many-to-many relationships.
+
+### Complex Modification
+
+Changing database structure is difficult.
+
+### Data Redundancy
+
+Duplicate data may occur.
+
+### Dependency on Parent
+
+Child records cannot exist independently.
+
+---
+
+## Applications
+
+* File systems
+* Organization charts
+* XML databases
+* Banking systems (older systems)
+
+---
+
+---
+
+# Network Data Model
+
+## Definition
+
+The **Network Data Model** organizes data using records and links. It is an extension of the hierarchical model.
+
+In this model:
+
+* A child can have multiple parents.
+* Many-to-many relationships are supported.
+
+Data is represented as a graph structure rather than a tree.
+
+---
+
+## Structure of Network Model
+
+* Records are connected using pointers or links.
+* Relationships are represented through sets.
+
+### Example
+
+In a university database:
+
+* A student can enroll in multiple courses.
+* A course can have multiple students.
+
+This creates a many-to-many relationship.
+
+---
+
+## Characteristics
+
+* Graph-based structure
+* Supports many-to-many relationships
+* Flexible connections between records
+* Uses pointers for navigation
+
+---
+
+## Advantages of Network Model
+
+### Supports Complex Relationships
+
+Can handle many-to-many relationships effectively.
+
+### Faster Data Access
+
+Pointer-based navigation provides quick access.
+
+### Reduced Redundancy
+
+Data duplication is lower compared to hierarchical model.
+
+### Flexibility
+
+Records can have multiple parent records.
+
+---
+
+## Disadvantages of Network Model
+
+### Complex Structure
+
+Difficult to design and maintain.
+
+### Difficult Navigation
+
+Users must understand physical links between records.
+
+### High Programming Complexity
+
+Requires detailed procedural access methods.
+
+### Poor Data Independence
+
+Changes in structure may affect applications.
+
+---
+
+## Applications
+
+* Telecommunication systems
+* Transportation networks
+* Complex inventory systems
+
+---
+
+---
+
+# Relational Data Model
+
+## Definition
+
+The **Relational Data Model** stores data in the form of tables called relations.
+
+* Rows represent records (tuples)
+* Columns represent attributes (fields)
+
+It was proposed by **E. F. Codd** in 1970 and is the most widely used data model today.
+
+---
+
+## Structure of Relational Model
+
+A relation consists of:
+
+| Student_ID | Name  | Course |
+| ---------- | ----- | ------ |
+| 101        | Rahul | BCA    |
+| 102        | Priya | MCA    |
+
+### Important Terms
+
+* **Relation** → Table
+* **Tuple** → Row
+* **Attribute** → Column
+* **Primary Key** → Unique identifier
+* **Foreign Key** → Connects tables
+
+---
+
+## Characteristics
+
+* Data stored in tables
+* Supports relationships using keys
+* Uses SQL for operations
+* Provides high data independence
+
+---
+
+## Advantages of Relational Model
+
+### Simple and Easy to Use
+
+Tabular structure is easy to understand.
+
+### Reduced Redundancy
+
+Normalization minimizes duplicate data.
+
+### Data Integrity
+
+Constraints maintain valid data.
+
+### Flexibility
+
+Easy to modify tables and relationships.
+
+### Powerful Query Language
+
+SQL allows efficient data retrieval and manipulation.
+
+### Data Independence
+
+Changes in physical storage do not affect applications.
+
+---
+
+## Disadvantages of Relational Model
+
+### Complex for Large Systems
+
+Handling huge databases may affect performance.
+
+### Memory Consumption
+
+Requires more storage and processing power.
+
+### Slower Performance
+
+Complex joins can reduce speed.
+
+### Difficult Object Representation
+
+Not ideal for multimedia or complex objects.
+
+---
+
+## Applications
+
+* Banking systems
+* E-commerce websites
+* Library management systems
+* Hospital management systems
+* University databases
+
+---
+
+# Comparison Between Hierarchical, Network, and Relational Models
+
+| Feature           | Hierarchical Model | Network Model | Relational Model           |
+| ----------------- | ------------------ | ------------- | -------------------------- |
+| Structure         | Tree               | Graph         | Table                      |
+| Relationship Type | One-to-Many        | Many-to-Many  | Supports all relationships |
+| Flexibility       | Less flexible      | More flexible | Highly flexible            |
+| Complexity        | Simple             | Complex       | Moderate                   |
+| Data Access       | Path-based         | Pointer-based | SQL-based                  |
+| Redundancy        | High               | Moderate      | Low                        |
+| Ease of Use       | Easy               | Difficult     | Very easy                  |
+| Data Independence | Low                | Low           | High                       |
+| Popularity        | Less used          | Rarely used   | Most widely used           |
+
+---
+
+## Conclusion
+
+Data models define how data is organized and managed within a DBMS. The hierarchical model uses a tree structure and supports one-to-many relationships, while the network model extends it to support many-to-many relationships through graph structures. The relational model organizes data into tables and is the most widely used model because of its simplicity, flexibility, data independence, and powerful query capabilities. Understanding these models is essential for designing efficient database systems.

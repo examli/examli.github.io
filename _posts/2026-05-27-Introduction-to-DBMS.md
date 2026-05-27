@@ -294,3 +294,165 @@ DBMS is widely used in many fields:
 ## Conclusion
 
 A Database Management System is an essential software system used for efficient storage, management, and retrieval of data. It overcomes the limitations of traditional file systems by providing security, consistency, reduced redundancy, and concurrent access. Due to its reliability and efficiency, DBMS has become a fundamental component in modern organizations and applications.
+
+
+# File System vs DBMS
+
+## Introduction
+
+Before the development of Database Management Systems (DBMS), data was stored using traditional **File Systems**. In a file system, data is stored in separate files managed directly by the operating system. Although file systems were simple and suitable for small applications, they suffered from many limitations such as redundancy, inconsistency, and poor security.
+
+A **DBMS** was developed to overcome these problems by providing centralized and efficient management of data.
+
+---
+
+## File System
+
+A **File System** is a method of storing and organizing data in separate files on a computer storage device. Each application program maintains its own files independently.
+
+### Characteristics of File System
+
+* Data is stored in individual files.
+* Programs directly access and manage files.
+* No centralized control of data.
+* Data sharing is difficult.
+* High chances of redundancy and inconsistency.
+
+### Example
+
+In a college management system:
+
+* Student information may be stored in one file.
+* Fee details in another file.
+* Examination records in separate files.
+
+This can lead to duplication of student information in multiple files.
+
+---
+
+## Database Management System (DBMS)
+
+A **DBMS** is software that manages databases and provides an organized way to store, retrieve, and manipulate data.
+
+In DBMS:
+
+* Data is centrally controlled.
+* Multiple users can access data simultaneously.
+* Redundancy and inconsistency are minimized.
+
+### Example
+
+In a DBMS-based college system:
+
+* Student data is stored once in a centralized database.
+* Different departments access the same database when needed.
+
+---
+
+# Difference Between File System and DBMS
+
+| Basis                     | File System                   | DBMS                                 |
+| ------------------------- | ----------------------------- | ------------------------------------ |
+| Definition                | Stores data in separate files | Stores data in a structured database |
+| Data Redundancy           | High redundancy               | Redundancy is minimized              |
+| Data Consistency          | Difficult to maintain         | Consistency is maintained            |
+| Data Sharing              | Limited sharing               | Easy sharing among users             |
+| Security                  | Less secure                   | Strong security mechanisms           |
+| Data Integrity            | Difficult to enforce          | Integrity constraints supported      |
+| Backup & Recovery         | Limited support               | Automatic backup and recovery        |
+| Concurrency Control       | Not supported properly        | Supports multi-user access           |
+| Data Independence         | Not available                 | Available                            |
+| Query Processing          | Manual programming required   | Uses query languages like SQL        |
+| Relationship Between Data | Difficult to establish        | Relationships easily maintained      |
+| Complexity                | Simple to use                 | More complex                         |
+| Cost                      | Low cost                      | Higher cost                          |
+| Scalability               | Suitable for small systems    | Suitable for large systems           |
+
+---
+
+## Problems in File System
+
+### 1. Data Redundancy
+
+The same data may be stored in multiple files.
+
+**Example:**
+Student name stored in admission file, fee file, and exam file.
+
+### 2. Data Inconsistency
+
+When duplicate data is updated in one file but not in others, inconsistent data occurs.
+
+### 3. Difficulty in Accessing Data
+
+Searching and retrieving information becomes difficult and time-consuming.
+
+### 4. Data Isolation
+
+Data is scattered across different files and formats.
+
+### 5. Security Problems
+
+File systems provide limited security features.
+
+### 6. Lack of Backup and Recovery
+
+Recovery after system failure is difficult.
+
+### 7. Concurrent Access Problems
+
+Multiple users accessing the same file may cause conflicts.
+
+---
+
+## Advantages of DBMS over File System
+
+### Reduced Redundancy
+
+DBMS stores data centrally, reducing duplication.
+
+### Improved Consistency
+
+Since data is stored once, updates remain consistent.
+
+### Better Security
+
+Access permissions and authentication protect data.
+
+### Efficient Data Retrieval
+
+SQL queries help retrieve data quickly.
+
+### Concurrent Access
+
+Multiple users can work simultaneously without conflicts.
+
+### Backup and Recovery
+
+Automatic recovery mechanisms protect against data loss.
+
+### Data Integrity
+
+Rules and constraints maintain accurate data.
+
+### Data Independence
+
+Changes in database structure do not affect application programs significantly.
+
+---
+
+## When File System is Preferred
+
+Although DBMS is superior in most cases, file systems may still be used:
+
+* In small applications
+* When data volume is low
+* Where cost must be minimized
+* In simple standalone systems
+
+---
+
+## Conclusion
+
+A File System is a traditional method of storing data in separate files, whereas a DBMS provides a centralized, organized, and secure approach to data management. File systems suffer from redundancy, inconsistency, and poor security, while DBMS overcomes these limitations by providing efficient storage, integrity, concurrency control, and better data management. Therefore, DBMS is preferred for modern large-scale applications and organizations.
+

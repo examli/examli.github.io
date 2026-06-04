@@ -1,7 +1,7 @@
 ---
 
 layout: default
-title: "Python for automation"
+title: "Marathi SPPU 4th Semester Notes"
 category: "Programming"
 ---
 

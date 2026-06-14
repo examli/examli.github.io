@@ -4,7 +4,7 @@
   --text-muted: #666666;
   --text-light: #888888;
   --border-line: #f5f5f5;
-  --accent-green: #00a862; /* Sharp focus tag color */
+  --accent-green: red; /* Sharp focus tag color */
 }
 
 body {
